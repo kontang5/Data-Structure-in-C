@@ -1,0 +1,15 @@
+# C Programming Language
+
+## Build
+/build/
+*.o
+*.out
+*.exe
+
+
+# Operating System
+
+## MacOS
+.DS_store
+
+
