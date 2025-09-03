@@ -3,19 +3,27 @@
 #include <stdbool.h>
 #include "singlylinkedlist.h"
 
+void sll_init(SinglyLinkedList *list) {
+	list->dummy = (Node *)malloc(sizeof(Node));
+	if (!list->dummy)
+		return;
+	list->dummy->next = NULL;
+	list->tail = NULL;
+}
+
 void sll_clear(SinglyLinkedList *list) {
-	Node *current = list->head;
+	Node *current = list->dummy->next;
 	while (current) {
 		Node *temp = current;
 		current = current->next;
 		free(temp);
 	}
-	list->head = NULL;
-	list->tail = NULL;	// Reset tail
+	list->dummy->next = NULL;
+	list->tail = NULL;
 }
 
 size_t sll_size(SinglyLinkedList *list) {
-	Node *current = list->head;
+	Node *current = list->dummy->next;
 	size_t size = 0;
 	
 	while (current) {
@@ -27,11 +35,11 @@ size_t sll_size(SinglyLinkedList *list) {
 }
 
 bool sll_is_empty(SinglyLinkedList *list) {
-	return list->head == NULL;
+	return list->dummy->next == NULL;
 }
 
 int sll_get(SinglyLinkedList *list, size_t index) {
-	Node *current = list->head;
+	Node *current = list->dummy->next;
 	size_t i = 0;
 
 	while (current) {
@@ -44,7 +52,7 @@ int sll_get(SinglyLinkedList *list, size_t index) {
 }
 
 int sll_find(SinglyLinkedList *list, int value) {
-	Node *current = list->head;
+	Node *current = list->dummy->next;
 	size_t i= 0;
 
 	while (current) {
@@ -65,13 +73,13 @@ void sll_append(SinglyLinkedList *list, int value) {
 	new->data = value;
 	new->next = NULL;
 
-	if (!list->head) {
-		list->head = new;
-		list->tail = new;	// Update tail
-		return;
+	if (!list->tail) {
+		list->dummy->next = new;
+		list->tail = new;
+	} else {
+		list->tail->next = new;
+		list->tail = new;
 	}
-	list->tail->next = new;	// Append at tail
-	list->tail = new;	// Update tail
 }
 
 void sll_prepend(SinglyLinkedList *list, int value) {
@@ -81,40 +89,31 @@ void sll_prepend(SinglyLinkedList *list, int value) {
 		return;
 
 	new->data = value;
-	new->next = list->head;
-	list->head = new;
+	new->next = list->dummy->next;
+	list->dummy->next = new;
 
 	if (!list->tail)
 		list->tail = new;
 }
 
 void sll_delete(SinglyLinkedList *list, int value) {
+	Node *current = list->dummy;
 
-	if (!list->head)
-		return;
-
-	Node *current = list->head;
-	Node *previous = NULL;
-
-	while (current) {
-		if (current->data == value) {
-			if (previous) 
-				previous->next = current->next;	
-			else 
-				list->head = current->next;
-			if (current == list->tail)	// Update tail if last node deleted
-				list->tail = previous;
-
-			free(current);
+	while (current->next) {
+		if (current->next->data == value) {
+			Node *target = current->next;
+			current->next = target->next;
+			if (target == list->tail)
+				list->tail = (current == list->dummy) ? NULL : current;
+			free(target);
 			return;
 		}
-		previous = current;
 		current = current->next;
 	}
 }
 
 void sll_print(SinglyLinkedList *list) {
-	Node *current = list->head;
+	Node *current = list->dummy->next;
 
 	printf("[");
 	while (current) {

@@ -11,18 +11,19 @@ typedef struct Node {
 } Node;
 
 typedef struct {
-	Node *head;
+	Node *dummy;
 	Node *tail;
 } SinglyLinkedList;
 
 // Memory Management
+void sll_init(SinglyLinkedList *list);
 void sll_clear(SinglyLinkedList *list);
 
 // Capacity
 size_t sll_size(SinglyLinkedList *list);
 bool sll_is_empty(SinglyLinkedList *list);
 
-// search
+// Search
 int sll_get(SinglyLinkedList *list, size_t index);
 int sll_find(SinglyLinkedList *list, int value);
 
