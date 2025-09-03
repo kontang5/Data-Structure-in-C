@@ -5,7 +5,7 @@
 int main() {
 
 	// Initialize as empty
-	SinglyLinkedList list = {NULL};
+	SinglyLinkedList list = {0};	// update initializer
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
 	sll_print(&list);
@@ -42,6 +42,6 @@ int main() {
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
 
-	printf("Complete singly linked list\n");
+	printf("Complete SinglyLinkedList\n");
 }
 
