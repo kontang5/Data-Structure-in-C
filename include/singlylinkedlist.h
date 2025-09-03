@@ -6,12 +6,13 @@
 
 // Definition
 typedef struct Node {
-    int data;
-    struct Node *next;
+	int data;
+	struct Node *next;
 } Node;
 
 typedef struct {
-    Node *head;
+	Node *head;
+	Node *tail;
 } SinglyLinkedList;
 
 // Memory Management
