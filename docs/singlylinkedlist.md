@@ -1,6 +1,6 @@
 # Singly Linked List
 
-This API provides a simple implementation of a singly linked list.
+This API provides implementation of a singly linked list.
 
 ## Data Structure
 
@@ -12,6 +12,7 @@ typedef struct Node {
 
 typedef struct SinglyLinkedList {
 	Node *head;            
+	Node *tail;
 } SinglyLinkedList;
 ```
 
@@ -79,7 +80,7 @@ Adds a new node with the given value at the end of the list.
 - Parameter
 	- `list`: Pointer to the singly linked list
 	- `value`: Value to insert
-- Time Complexity: **O(n)**
+- Time Complexity: **O(1)**
 
 2. `void sll_prepend(SinglyLinkedList *list, int value)`
 
