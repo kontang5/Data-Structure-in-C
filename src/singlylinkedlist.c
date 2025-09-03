@@ -21,6 +21,14 @@ void sll_clear(SinglyLinkedList *list) {
 	list->dummy->next = NULL;
 	list->tail = NULL;
 }
+void sll_free(SinglyLinkedList *list) {
+	if (!list->dummy)
+		return;
+	sll_clear(list);
+	free(list->dummy);
+	list->dummy = NULL;
+	list->tail = NULL;
+}
 
 size_t sll_size(SinglyLinkedList *list) {
 	Node *current = list->dummy->next;
@@ -49,6 +57,19 @@ int sll_get(SinglyLinkedList *list, size_t index) {
 		i++;
 	}
 	return -1;
+}
+
+int sll_front(SinglyLinkedList *list) {
+	if (!list->dummy->next)
+		return -1;
+
+	return list->dummy->next->data;
+}
+
+int sll_back(SinglyLinkedList *list) {
+	if (!list->tail)
+		return -1;
+	return list->tail->data;
 }
 
 int sll_find(SinglyLinkedList *list, int value) {

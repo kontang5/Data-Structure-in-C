@@ -18,13 +18,18 @@ typedef struct {
 // Memory Management
 void sll_init(SinglyLinkedList *list);
 void sll_clear(SinglyLinkedList *list);
+void sll_free(SinglyLinkedList *list);
 
 // Capacity
 size_t sll_size(SinglyLinkedList *list);
 bool sll_is_empty(SinglyLinkedList *list);
 
-// Search
+// Access
 int sll_get(SinglyLinkedList *list, size_t index);
+int sll_front(SinglyLinkedList *list);
+int sll_back(SinglyLinkedList *list);
+
+// Search
 int sll_find(SinglyLinkedList *list, int value);
 
 // Insertion
