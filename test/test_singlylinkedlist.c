@@ -5,7 +5,8 @@
 int main() {
 
 	// Initialize as empty
-	SinglyLinkedList list = {0};	// update initializer
+	SinglyLinkedList list;
+	sll_init(&list);
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
 	sll_print(&list);
@@ -39,6 +40,7 @@ int main() {
 
 	// Clear
 	sll_clear(&list);
+	sll_print(&list);
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
 
