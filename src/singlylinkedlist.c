@@ -11,7 +11,9 @@ void sll_clear(SinglyLinkedList *list) {
 		free(temp);
 	}
 	list->head = NULL;
+	list->tail = NULL;	// Reset tail
 }
+
 size_t sll_size(SinglyLinkedList *list) {
 	Node *current = list->head;
 	size_t size = 0;
@@ -65,13 +67,11 @@ void sll_append(SinglyLinkedList *list, int value) {
 
 	if (!list->head) {
 		list->head = new;
+		list->tail = new;	// Update tail
 		return;
 	}
-	Node *current = list->head;
-	while (current->next) {
-		current = current->next;
-	}
-	current->next = new;
+	list->tail->next = new;	// Append at tail
+	list->tail = new;	// Update tail
 }
 
 void sll_prepend(SinglyLinkedList *list, int value) {
@@ -83,6 +83,9 @@ void sll_prepend(SinglyLinkedList *list, int value) {
 	new->data = value;
 	new->next = list->head;
 	list->head = new;
+
+	if (!list->tail)
+		list->tail = new;
 }
 
 void sll_delete(SinglyLinkedList *list, int value) {
@@ -99,6 +102,9 @@ void sll_delete(SinglyLinkedList *list, int value) {
 				previous->next = current->next;	
 			else 
 				list->head = current->next;
+			if (current == list->tail)	// Update tail if last node deleted
+				list->tail = previous;
+
 			free(current);
 			return;
 		}
