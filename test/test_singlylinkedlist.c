@@ -5,7 +5,8 @@
 int main() {
 
 	// Initialize as empty
-	SinglyLinkedList list = {0};	// update initializer
+	SinglyLinkedList list;
+	sll_init(&list);
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
 	sll_print(&list);
@@ -18,7 +19,9 @@ int main() {
 	assert(!sll_is_empty(&list));
 	assert(sll_size(&list) == 3);
 	assert(sll_get(&list, 0) == 3);
+	assert(sll_front(&list) == 3);
 	assert(sll_get(&list, 1) == 5);
+	assert(sll_back(&list) == 7);
 	assert(sll_get(&list, 2) == 7);
 
 	// Prepend
@@ -39,6 +42,7 @@ int main() {
 
 	// Clear
 	sll_clear(&list);
+	sll_print(&list);
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
 

@@ -11,8 +11,9 @@ typedef struct Node {
 } Node;
 
 typedef struct SinglyLinkedList {
-	Node *head;            
+	Node *dummy;            
 	Node *tail;
+	size_t size;
 } SinglyLinkedList;
 ```
 
@@ -20,9 +21,23 @@ typedef struct SinglyLinkedList {
 
 ### Memory Management
 
-1. `void sll_clear(SinglyLinkedList *list)`
+1. `void sll_init(SinglyLinkedList *list)`
 
-Free all nodes in the list.
+Initialize the list to empty. Allocates the dummy head node.
+- Parameter
+	- `list`: Pointer to the singly linked list
+- Time Complexity: **O(1)**
+
+2. `void sll_clear(SinglyLinkedList *list)`
+
+Free all nodes in the list. Leaves the dummy head intact.
+- Parameter
+	- `list`: Pointer to the singly linked list
+- Time Complexity: **O(n)**
+
+3. `void sll_free(SinglyLinkedList *list)`
+
+Free all nodes including the dummy head and resets pointers.
 - Parameter
 	- `list`: Pointer to the singly linked list
 - Time Complexity: **O(n)**
@@ -36,7 +51,7 @@ Returns the number of elements in the list.
 	- `list`: Pointer to the singly linked list
 - Return: `size_t`
 	- Number of nodes in the list
-- Time Complexity: **O(n)**
+- Time Complexity: **O(1)**
 
 2. `bool sll_is_empty(SinglyLinkedList *list)`
 
@@ -48,7 +63,7 @@ Check whether the list is empty.
 	- `false`: list is not empty
 - Time Complexity: **O(1)**
 
-### Search
+### Access
 
 1. `int sll_get(SinglyLinkedList *list, size_t index)`
 
@@ -61,7 +76,29 @@ Retrieves the value stored at the given index.
 	- `-1`: index out of bounds
 - Time Complexity: **O(n)**
 
-2. `int sll_find(SinglyLinkedList *list, int value)`
+2. `int sll_front(SinglyLinkedList *list)`
+
+Returns the first element in the list.
+- Parameter
+	- `list`: Pointer to the singly linked list
+- Return: `int`
+	- Value at the beginning
+	- `-1`: index out of bounds
+- Time Complexity: **O(1)**
+
+3. `int sll_back(SinglyLinkedList *list)`
+
+Returns the last element in the list.
+- Parameter
+	- `list`: Pointer to the singly linked list
+- Return: `int`
+	- Value at the end
+	- `-1`: index out of bounds
+- Time Complexity: **O(1)**
+
+### Search
+
+1. `int sll_find(SinglyLinkedList *list, int value)`
 
 Searches for the first occurrence of a value in the list.
 - Parameter
