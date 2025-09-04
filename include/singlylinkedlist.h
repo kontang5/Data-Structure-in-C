@@ -13,6 +13,7 @@ typedef struct Node {
 typedef struct {
 	Node *dummy;
 	Node *tail;
+	size_t size;
 } SinglyLinkedList;
 
 // Memory Management

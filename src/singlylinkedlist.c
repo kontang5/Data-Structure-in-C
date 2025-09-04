@@ -9,6 +9,7 @@ void sll_init(SinglyLinkedList *list) {
 		return;
 	list->dummy->next = NULL;
 	list->tail = NULL;
+	list->size = 0;
 }
 
 void sll_clear(SinglyLinkedList *list) {
@@ -20,7 +21,9 @@ void sll_clear(SinglyLinkedList *list) {
 	}
 	list->dummy->next = NULL;
 	list->tail = NULL;
+	list->size = 0;
 }
+
 void sll_free(SinglyLinkedList *list) {
 	if (!list->dummy)
 		return;
@@ -28,48 +31,33 @@ void sll_free(SinglyLinkedList *list) {
 	free(list->dummy);
 	list->dummy = NULL;
 	list->tail = NULL;
+	list->size = 0;
 }
 
 size_t sll_size(SinglyLinkedList *list) {
-	Node *current = list->dummy->next;
-	size_t size = 0;
-	
-	while (current) {
-		size++;
-		current = current->next;
-	}
-	
-	return size;
+	return list->size;
 }
 
 bool sll_is_empty(SinglyLinkedList *list) {
-	return list->dummy->next == NULL;
+	return list->size == 0;
 }
 
 int sll_get(SinglyLinkedList *list, size_t index) {
-	Node *current = list->dummy->next;
-	size_t i = 0;
+	if (index >= list->size) 
+		return -1;
 
-	while (current) {
-		if (i == index)
-			return current->data;
+	Node *current = list->dummy;
+	for (size_t i = 0; i <= index; i++)
 		current = current->next;
-		i++;
-	}
-	return -1;
+	return current->data;
 }
 
 int sll_front(SinglyLinkedList *list) {
-	if (!list->dummy->next)
-		return -1;
-
-	return list->dummy->next->data;
+	return (list->size == 0) ? -1 : list->dummy->next->data;
 }
 
 int sll_back(SinglyLinkedList *list) {
-	if (!list->tail)
-		return -1;
-	return list->tail->data;
+	return (list->size == 0) ? -1 : list->tail->data;
 }
 
 int sll_find(SinglyLinkedList *list, int value) {
@@ -96,11 +84,11 @@ void sll_append(SinglyLinkedList *list, int value) {
 
 	if (!list->tail) {
 		list->dummy->next = new;
-		list->tail = new;
 	} else {
 		list->tail->next = new;
-		list->tail = new;
 	}
+	list->tail = new;
+	list->size++;
 }
 
 void sll_prepend(SinglyLinkedList *list, int value) {
@@ -115,6 +103,8 @@ void sll_prepend(SinglyLinkedList *list, int value) {
 
 	if (!list->tail)
 		list->tail = new;
+
+	list->size++;
 }
 
 void sll_delete(SinglyLinkedList *list, int value) {
@@ -127,6 +117,7 @@ void sll_delete(SinglyLinkedList *list, int value) {
 			if (target == list->tail)
 				list->tail = (current == list->dummy) ? NULL : current;
 			free(target);
+			list->size--;
 			return;
 		}
 		current = current->next;
@@ -138,11 +129,9 @@ void sll_print(SinglyLinkedList *list) {
 
 	printf("[");
 	while (current) {
+		printf("%d", current->data);
 		if (current->next)
-			printf("%d, ", current->data);
-		else
-			printf("%d", current->data);
-
+			printf(", ");
 		current = current->next;
 	}
 	printf("]\n");
