@@ -19,7 +19,9 @@ int main() {
 	assert(!sll_is_empty(&list));
 	assert(sll_size(&list) == 3);
 	assert(sll_get(&list, 0) == 3);
+	assert(sll_front(&list) == 3);
 	assert(sll_get(&list, 1) == 5);
+	assert(sll_back(&list) == 7);
 	assert(sll_get(&list, 2) == 7);
 
 	// Prepend
