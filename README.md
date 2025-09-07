@@ -80,6 +80,13 @@ void test_stack_push() {
 }
 ```
 
+### Versioning
+
+Semantic versioning (e.g., 0.1.2)
+- Major: Incompatible API changes
+- Minor: Backward-compatible changes
+- Patch: bugfixes, tiny update
+
 ## Repository Guidelines
 
 ### Commit Message Prefix
@@ -113,9 +120,3 @@ void test_stack_push() {
 	- Ensure CI passed
 	- `Cherry-pick` the commit from `main` into `dev`
 
-### Versioning
-
-Semantic versioning (e.g., 0.1.2)
-- Major: Incompatible API changes
-- Minor: Backward-compatible changes
-- Patch: bugfixes, tiny update
