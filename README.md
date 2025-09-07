@@ -4,6 +4,8 @@
 Based on *C99*
 
 ## Features
+1. LinkedList
+	1. SinglyLinkedList
 
 ## How to Use
 
