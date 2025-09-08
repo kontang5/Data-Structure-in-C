@@ -45,7 +45,5 @@ int main() {
 	sll_print(&list);
 	assert(sll_is_empty(&list));
 	assert(sll_size(&list) == 0);
-
-	printf("Complete SinglyLinkedList\n");
 }
 

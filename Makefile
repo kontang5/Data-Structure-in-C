@@ -32,16 +32,47 @@ $(BUILD_DIR):
 
 # Run all test binaries
 test: all
-	@for t in $(TEST_BINS); do \
-		echo "Running $$t..."; \
-		./$$t || exit 1; \
-	done
-	@echo "All tests passed."
+	@total=0; passed=0; failed=0; failed_list=""; \
+	for t in $(TEST_BINS); do \
+		name=$$(basename $$t); \
+		total=$$((total+1)); \
+		echo ""; \
+		echo ">>> Running test: $$name"; \
+		echo ""; \
+		if ./$$t; then \
+		    echo ""; \
+			echo "[PASS] $$name"; \
+			passed=$$((passed+1)); \
+		else \
+		    echo ""; \
+			echo "[FAIL] $$name"; \
+			failed=$$((failed+1)); \
+			failed_list="$$failed_list $$name"; \
+		fi; \
+		echo ""; \
+	done; \
+	if [ $$failed -eq 0 ]; then \
+		echo "All tests PASSED"; \
+	else \
+		echo "The following tests FAILED:$$failed_list"; \
+	fi; \
+	echo "Summary: $$total tests, $$passed passed, $$failed failed"; \
+	if [ $$failed -ne 0 ]; then exit 1; fi
+	@echo "";
 
 # Run a single test
 atest: $(BUILD_DIR)/$(TEST_NAME)
-	@echo "Running $(TEST_NAME)..."
-	./$<
+	@echo "";
+	@echo ">>> Running test: $(TEST_NAME)";
+	@echo "";
+	@if ./$(BUILD_DIR)/$(TEST_NAME); then \
+		echo ""; \
+		echo "[PASS] $(TEST_NAME)"; \
+	else \
+		echo ""; \
+		echo "[FAIL] $(TEST_NAME)"; \
+	fi
+	@echo "";
 
 # Clean build artifacts
 clean:
