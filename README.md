@@ -86,40 +86,32 @@ void test_stack_push() {
 #### Doxygen-style
 
 ```c
-/**
- * @file addition.c
- * @brief Simple example demonstrating Doxygen comments.
- *
- * This file provides basic add operations and a Point struct
- * to demonstrate Doxygen documentation in C.
- */
+/// @file addition.c
+/// @brief Simple example demonstrating Doxygen comments.
+///
+///  This file provides basic add operations and a Point struct
+/// to demonstrate Doxygen documentation in C.
 
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
- * @struct Point
- * @brief Represents a 2D point.
- */
+/// @struct Point
+/// @brief Represents a 2D point.
 typedef struct {
     int x; ///< X coordinate
     int y; ///< Y coordinate
 } Point;
 
-/**
- * @brief Adds two integers.
- * @param a First integer.
- * @param b Second integer.
- * @return Sum of a and b.
- */
+/// @brief Adds two integers.
+/// @param a First integer.
+/// @param b Second integer.
+/// @return Sum of a and b.
 int add(int a, int b) {
     return a + b;
 }
 
-/**
- * @brief Main function demonstrating addition usage.
- * @return Exit status code.
- */
+/// @brief Main function demonstrating addition usage.
+/// @return Exit status code.
 int main(void) {
     Point p = {3, 4}; ///< Example point
 
