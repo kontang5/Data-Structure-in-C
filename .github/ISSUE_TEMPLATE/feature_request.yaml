@@ -1,0 +1,50 @@
+name: Feature request
+description: Suggesting a new feature or improvement
+assignees: kontang5
+labels: enhancement
+title: "Feature: "
+body:
+  - type: input
+    id: overview
+    attributes:
+      label: Overview
+      description: A brief summary of the feature.
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Explanation of the necessity or value.
+      placeholder: |
+        A description of why this feature is needed.
+        
+        Example: "The feature is needed because [...]"
+        Example: "The feature would be useful because [...]"
+      render: markdown
+    validations:
+        required: true
+
+  - type: textarea
+    id: proposition
+    attributes:
+      label: Proposition
+      description: Description of the implementation.
+      placeholder: |
+        A description of the implementation.
+        
+        Example: "The feature will be implemented by [...]"
+      render: markdown
+    validations:
+        required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other context, screenshots, or relevant details.
+    validations:
+        required: false
+
+
