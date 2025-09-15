@@ -1,32 +1,164 @@
-# GitHub Template
+# Data Structure in C
 
-## Overview
+A **C library of data structures** for learning and implementing data structures and algorithms.
+Based on *C99*
 
 ## Features
 
-## Getting Started
+## How to Use
+
+1. Navigate to the project directory
+```shell
+cd path/to/project
+```
+2. Build the project
+```shell
+make
+```
+3. Test
+```shell
+# Run all tests
+make test
+
+# Run a single test
+make atest TEST_NAME=target
+```
+> Replace the target with the name of the test you want
+4. Clean build artifacts
+```shell
+make clean
+```
 
 ## Project Structure
 ```
-$PROJECT_ROOT
-├──
-└── 
+data-structure-in-c  
+├── include/  
+│   └── header files  
+├── src/  
+│   └── implementation files  
+├── test/  
+│   └── test files  
+├── build/  
+├── Makefile  
+└── README.md  
 ```
 
 ## Project Guidelines
 
 ### Naming Conventions
+- Structs: Use `PascalCase`
+- Functions: Use `snake_case` with the data structure name as prefix (e.g., `stack_push()`)
+- Test files: suffix with `_t` (e.g., list\_t.c).
 
-### Testing
+### Test Strategy
+
+#### AAA(Arrange-Act-Assert)
+1. Arrange: Set up the test data, environment and initialize
+2. Act: call the function under test
+3. Assert: check the result
+```c
+void test_stack_push() {
+    // Arrange
+    Stack stack;
+    stack_init(&stack);
+
+    // Act
+    stack_push(&stack, 42);
+
+    // Assert
+    assert(stack_top(&stack) == 42);
+}
+```
 
 ### Documentation
 
+#### Doxygen-style
+```c
+/**
+ * @file addition.c
+ * @brief Simple example demonstrating Doxygen comments.
+ *
+ * This file provides basic addition operations and a Point struct
+ * to demonstrate how to document C code using Doxygen.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * @struct Point
+ * @brief Represents a 2D point with integer coordinates.
+ */
+typedef struct {
+    int x; /**< X coordinate */
+    int y; /**< Y coordinate */
+} Point;
+
+/**
+ * @brief Adds two integers.
+ *
+ * This function takes two integers and returns their sum.
+ *
+ * @param a First integer.
+ * @param b Second integer.
+ * @return Sum of @p a and @p b.
+ */
+int add(int a, int b) {
+    return a + b;
+}
+
+/**
+ * @brief Main function demonstrating the usage of addition.
+ *
+ * Creates an example point, performs integer addition, and prints the result.
+ *
+ * @return Exit status code (0 for success).
+ */
+int main(void) {
+    Point p = {3, 4}; /**< Example point */
+
+    int x = 10, y = 5;
+
+    printf("add(%d, %d) = %d\n", x, y, add(x, y));
+    
+    return 0;
+}
+```
+
 ### Versioning
+
+#### Semantic versioning
+- Major: Incompatible API changes
+- Minor: Backward-compatible changes
+- Patch: bugfixes, tiny update
 
 ## Repository Guidelines
 
-### Branch Strategy
-
 ### Commit Message Prefix
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation update
+- `refactor`: Code refactoring
+- `test`: tests
+- `chore`: Other maintenance tasks
+
+### Branch Strategy
+- `main`: Stable version
+- `dev`: Testing, debugging, experiments
+- `feature/`: Implementation or improvement
+- `hotfix/`: Urgent fixes
 
 ### Merge Strategy
+1. `feature` -> `dev`
+	- Open a Pull Request targeting the `dev` branch
+	- Ensure code review, automated tests, and CI checks if needed
+	- Squash and merge with its feature branch name
+2. `dev` -> `main`
+	- Open a Pull Request targeting the `main` branch
+	- Review and confirm all tests passed.
+	- Merge commit with a simple title
+3. `hotfix`
+	- Open a Pull Request targeting the `main` branch
+	- Ensure CI passed
+	- `Cherry-pick` the commit from `main` into `dev`
+
