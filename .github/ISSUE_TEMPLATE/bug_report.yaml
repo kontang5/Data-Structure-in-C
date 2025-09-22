@@ -8,7 +8,7 @@ body:
     id: overview
     attributes:
       label: Overview
-      description: A brief summary of the bug.
+      description: Briefly summarize the bug.
     validations:
       required: true
 
@@ -16,9 +16,9 @@ body:
     id: reproduction
     attributes:
       label: Reproduction Steps
-      description: Step-by-step description of how to reproduce the bug.
+      description: Provide step-by-step instructions to reproduce the bug.
       placeholder: |
-        1.
+        1. 
         2.
         3.
         ...
@@ -30,9 +30,9 @@ body:
     id: expected
     attributes:
       label: Expected Outcome
-      description: Description of the expected behavior.
+      description: Describe the expected behavior.
       placeholder: |
-        A description of what you expected to happen.
+        Explain what you expected to happen clearly.
         
         Example: "The expected behavior is that [...]"
       render: markdown
@@ -43,7 +43,7 @@ body:
     id: logs
     attributes:
       label: Logs
-      description: Logs from the application.
+      description: Include relevant logs, stack traces, or error messages.
       render: bash
       placeholder: |
         # Include relevant code or logs here
