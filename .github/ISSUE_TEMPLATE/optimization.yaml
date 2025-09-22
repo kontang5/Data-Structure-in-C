@@ -1,5 +1,5 @@
 name: Optimization
-description: Suggest improvements to performance, efficiency, or resource usage
+description: Suggest improvements to performance, efficiency
 assignees: kontang5
 labels: optimization
 title: "Optimization: "
@@ -8,7 +8,7 @@ body:
     id: overview
     attributes:
       label: Overview
-      description: A brief summary of the optimization.
+      description: Briefly summarize the optimization.
     validations:
       required: true
 
@@ -16,9 +16,9 @@ body:
     id: problem
     attributes:
       label: Problem / Limitation
-      description: Explanation of the inefficiency or bottleneck.
+      description: Describe the inefficiency, bottleneck, or limitation.
       placeholder: |
-        A description of problem.
+        Explain the problem clearly.
 
         Example: "The current algorithm takes O(n²) time on large datasets."
       render: markdown
@@ -29,8 +29,10 @@ body:
     id: proposition
     attributes:
       label: Proposition
-      description: Dexcription of the solution.
+      description: Describe your proposed improvement or optimization.
       placeholder: |
+        Explain the solution and explain why it is reasonable.
+        
         Example: "Replace the current algorithm to [...] will reduce runtime from O(n²) to O(n log n)."
       render: markdown
     validations:
