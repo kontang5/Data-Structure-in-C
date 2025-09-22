@@ -1,0 +1,45 @@
+name: Optimization
+description: Suggest improvements to performance, efficiency, or resource usage
+assignees: kontang5
+labels: optimization
+title: "Optimization: "
+body:
+  - type: input
+    id: overview
+    attributes:
+      label: Overview
+      description: A brief summary of the optimization.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Limitation
+      description: Explanation of the inefficiency or bottleneck.
+      placeholder: |
+        A description of problem.
+
+        Example: "The current algorithm takes O(n²) time on large datasets."
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposition
+    attributes:
+      label: Proposition
+      description: Dexcription of the solution.
+      placeholder: |
+        Example: "Replace the current algorithm to [...] will reduce runtime from O(n²) to O(n log n)."
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any benchmarks, profiling results, or related references.
+    validations:
+      required: false

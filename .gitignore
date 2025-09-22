@@ -1,0 +1,19 @@
+#Project
+## Build
+/build/
+*.o
+*.out
+*.exe
+
+# Operating Systems
+## MacOS
+.DS_Store
+
+# Meta Data
+## JetBrains
+.idea
+
+# Confidential files
+
+# Manually managed files
+
